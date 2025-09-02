@@ -38,7 +38,6 @@ Route::controller(FAQController::class)->group(function () {
     Route::get('/faq/destroy/{id}', 'destroy')->name('faq.destroy');
 });
 
-
 // Dynamic Pages Route
 Route::controller(DynamicPagesController::class)->group(function () {
     Route::get('/dynamicpages', 'index')->name('dynamicpages.index');
