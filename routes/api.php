@@ -23,6 +23,13 @@ use App\Http\Controllers\API\Backend\CharExternalController;
 use App\Http\Controllers\API\Backend\CharInternalController;
 use App\Http\Controllers\API\Backend\CharSafetyController;
 use App\Http\Controllers\API\Backend\QuickSpecController;
+use App\Http\Controllers\API\Backend\CarController;
+use App\Http\Controllers\API\Backend\CarCreateController;
+use App\Http\Controllers\API\Backend\CardController;
+use App\Http\Controllers\API\Backend\ContactsController;
+use App\Http\Controllers\API\Backend\MultiImageController;
+use App\Http\Controllers\API\Backend\NewsController;
+use App\Http\Controllers\API\Backend\NewsLetterController;
 
 // =====================
 // Site Info
@@ -39,9 +46,16 @@ Route::get('/site/info', function () {
 
 
 // Category
-Route::controller(CategoryController::class)->group(function () {
+Route::middleware('auth:api')->controller(ChatController::class)->group(function () {
+    Route::controller(CategoryController::class)->group(function () {
     Route::get('/category/get', 'get');
+    Route::post('/category/store', 'store');
+    Route::post('/category/update/{id}', 'update');
+    Route::delete('/category/delete/{id}', 'destroy');
 });
+});
+
+
 
 //Live Chat Routes
 Route::middleware('auth:api')->controller(ChatController::class)->group(function () {
@@ -294,4 +308,61 @@ Route::delete('charSafety/delete/{id}', 'destroy');
 
 
 
+// car
+Route::middleware('auth:api')->controller(CarController::class)->group(function () {
+Route::get('car/get', 'index');
+Route::post('car/store',  'store');
+Route::get('car/edit/{id}', 'edit');
+Route::post('car/update/{id}', 'update');
+Route::delete('car/delete/{id}', 'destroy');
+});
 
+// multi image
+Route::middleware('auth:api')->controller(MultiImageController::class)->group(function () {
+Route::get('multiImage/get', 'index');
+Route::post('multiImage/store',  'store');
+Route::post('multiImage/update/{id}', 'update');
+Route::delete('multiImage/delete/{id}', 'destroy');
+});
+
+
+
+// contact
+Route::middleware('auth:api')->controller(ContactsController::class)->group(function () {
+Route::get('contacts/get', 'index');
+Route::post('contacts/store',  'store');
+});
+
+
+// newsletter
+Route::middleware('auth:api')->controller(NewsLetterController::class)->group(function () {
+Route::get('newsletter/get', 'index');
+Route::post('newsletter/store',  'store');
+});
+
+
+// news
+Route::get('news/get',[NewsController::class, 'index']);
+Route::post('news/store',  [NewsController::class, 'store']);
+
+
+// car create
+Route::middleware('auth:api')->controller(CarCreateController::class)->group(function () {
+
+Route::get('carCreate/get', 'index');
+Route::post('carCreate/store',  'store');
+Route::post('carCreate/update/{id}', 'update');
+
+Route::delete('carCreate/delete/{id}', 'destroy');
+
+});
+
+// card create
+Route::middleware('auth:api')->controller(CardController::class)->group(function () {
+Route::get('card/get', 'index');
+
+Route::post('card/store',  'store');
+Route::post('card/update/{id}', 'update');
+
+Route::delete('card/delete/{id}', 'destroy');
+});

@@ -29,6 +29,7 @@ class CharExternalController extends Controller
 
         $char_external = new Char_external;
         $char_external->name = $request->name;
+        $char_external->car_id = $request->car_id;
         $char_external->save();
 
         return $this->success([
@@ -49,6 +50,7 @@ class CharExternalController extends Controller
             return $this->error([], 'Char external not found', 404);
         }
         $char_external->name = $request->name;
+        $char_external->car_id = $request->car_id;
         $char_external->save();
         return $this->success([
             'char_external' => $char_external,

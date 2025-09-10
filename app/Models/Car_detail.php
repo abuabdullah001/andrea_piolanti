@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Car;
 
 class Car_detail extends Model
 {
@@ -21,5 +22,9 @@ class Car_detail extends Model
         'vin',
     ];
 
+    public function car()
+    {
+        return $this->belongsTo(Car::class);
+    }
     
 }

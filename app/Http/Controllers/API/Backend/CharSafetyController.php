@@ -28,6 +28,7 @@ class CharSafetyController extends Controller
         }
         $char_safety = new Char_sefety;
         $char_safety->name = $request->name;
+        $char_safety->car_id = $request->car_id;
         $char_safety->save();
 
         return $this->success([
@@ -41,6 +42,7 @@ class CharSafetyController extends Controller
             return $this->error([], 'Char safety not found', 404);
         }
         $char_safety->name = $request->name;
+        $char_safety->car_id = $request->car_id;
         $char_safety->save();
         return $this->success([
             'char_safety' => $char_safety,

@@ -78,6 +78,57 @@
                 </a>
             </li>
 
+            <li class="nav-item {{ request()->routeIs('faq.*') ? 'active' : '' }}">
+                <a class="d-flex align-items-center" href="{{ route('faq.index') }}">
+                    <i data-feather="bookmark"></i>
+                    <span class="menu-item text-truncate" data-i18n="Analytics">
+                        Faqs
+                    </span>
+                </a>
+            </li>
+
+            <li class="nav-item {{ request()->routeIs('banner.*') ? 'active' : '' }}">
+                <a class="d-flex align-items-center" href="{{ route('admin.banner.index') }}">
+                    <i data-feather="bookmark"></i>
+                    <span class="menu-item text-truncate" data-i18n="Analytics">
+                        Banneres
+                    </span>
+                </a>
+            </li>
+
+
+            <li class="nav-item {{ request()->routeIs('news.*') ? 'active' : '' }}">
+                <a class="d-flex align-items-center" href="{{ route('admin.news.index') }}">
+                    <i data-feather="bookmark"></i>
+                    <span class="menu-item text-truncate" data-i18n="Analytics">
+                        News
+                    </span>
+                </a>
+            </li>
+
+
+            <li class="nav-item {{ request()->routeIs('contact.*') ? 'active' : '' }}">
+                <a class="d-flex align-items-center" href="{{ route('admin.contact.index') }}">
+                    <i data-feather="bookmark"></i>
+                    <span class="menu-item text-truncate" data-i18n="Analytics">
+                        Contacts
+                    </span>
+                </a>
+            </li>
+
+            <li class="nav-item {{ request()->routeIs('mission.*') ? 'active' : '' }}">
+                <a class="d-flex align-items-center" href="{{ route('admin.mission.index') }}">
+                    <i data-feather="bookmark"></i>
+                    <span class="menu-item text-truncate" data-i18n="Analytics">
+                        Missions
+                    </span>
+                </a>
+            </li>
+
+
+
+
+
             <li class="navigation-header">
                 <span data-i18n="Charts &amp; Maps">
                     Subscriptions

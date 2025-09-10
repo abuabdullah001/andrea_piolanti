@@ -25,9 +25,15 @@ class CharComfortController extends Controller
         if($validator->fails()){
             return $this->error($validator->errors());
         }
-        $char_comfort = Char_comfort::create([
-            'name' => $request->name,
-        ]);
+     
+        $char_comfort= new Char_comfort;
+
+        $char_comfort->name = $request->name;
+        $char_comfort->car_id = $request->car_id;
+        $char_comfort->save();
+        
+        
+
         return $this->success([
             'char_comfort' => $char_comfort
         ], ' Char comfort created successfully', 200);
@@ -49,7 +55,9 @@ class CharComfortController extends Controller
         }
 
         $char_comfort->name = $request->name;
+        $char_comfort->car_id = $request->car_id;
         $char_comfort->save();
+        
         return $this->success([
             'char_comfort' => $char_comfort,
         ], ' Char comfort updated successfully', 200);

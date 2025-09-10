@@ -23,7 +23,7 @@ class QuickSpecController extends Controller
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
-             'category' => 'required',
+            'type' => 'required',
             'transmission' => 'required',
             'miles' => 'required'  ,
             'fuelLiter' => 'required',
@@ -34,11 +34,12 @@ class QuickSpecController extends Controller
         }
 
         $quickSpec = new Quick_spec();
+        $quickSpec->type = $request->type;
 
-        $quickSpec->category = $request->category;
         $quickSpec->transmission = $request->transmission;
         $quickSpec->miles = $request->miles;
         $quickSpec->fuelLiter = $request->fuelLiter;
+        $quickSpec->car_id = $request->car_id;
 
         $quickSpec->save();
 
@@ -63,10 +64,12 @@ class QuickSpecController extends Controller
             return $this->error([], 'Quick spec not found', 404);
         }
 
-        $quickSpec->category = $request->category;
+     
+        $quickSpec->type = $request->type;
         $quickSpec->transmission = $request->transmission;
         $quickSpec->miles = $request->miles;
         $quickSpec->fuelLiter = $request->fuelLiter;
+        $quickSpec->car_id = $request->car_id;
 
         $quickSpec->save();
 

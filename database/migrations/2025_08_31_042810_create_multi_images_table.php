@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('multi_images', function (Blueprint $table) {
             $table->id();
             $table->foreignId('car_id')->constrained()->onDelete('cascade');
-            $table->string('image[]');
+            $table->json('images'); // ✅ multiple images in one row
             $table->timestamps();
         });
     }

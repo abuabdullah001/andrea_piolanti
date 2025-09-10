@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Builder;
+use App\Models\Car;
 
 class Category extends Model
 {
@@ -14,7 +15,8 @@ class Category extends Model
         'slug',
         'image',
         'priority',
-        'status'
+        'status',
+        'car_id',
     ];
 
     protected $casts = [
@@ -32,6 +34,11 @@ class Category extends Model
         static::addGlobalScope('ignoreDefaultCategory', function (Builder $builder) {
             $builder->where('id', '!=', 1)->orderBy('priority', 'asc');
         });
+    }
+
+    public function car()
+    {
+        return $this->belongsTo(Car::class);
     }
 
 }

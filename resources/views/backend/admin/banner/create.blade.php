@@ -39,6 +39,8 @@
                     <input type="file" name="image" id="image" class="form-control" accept="image/*" required>
                 </div>
 
+              
+
                 <div class="mb-3">
                     <label for="status" class="form-label">Status</label>
                     <select name="status" id="status" class="form-select" required>

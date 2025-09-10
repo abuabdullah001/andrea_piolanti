@@ -13,7 +13,7 @@ class CarDetailController extends Controller
     use apiresponse;
     public function index()
     {
-        $carDetails = Car_detail::all();
+        $carDetails = Car_detail::with('cars')->all();
         return $this->success($carDetails);
     }
 
@@ -36,8 +36,6 @@ class CarDetailController extends Controller
             'doors' => 'required',
             'vin' => 'required',
 
-            // body_type	condition	year	cylinders	mileage 	transmission	displacement	color	fuel_type	drive_type	doors	vin
-
         ]);
 
         if ($validator->fails()) {
@@ -46,6 +44,7 @@ class CarDetailController extends Controller
 
         $carDetail = new Car_detail();
 
+        $carDetail->car_id = $request->car_id;
         $carDetail->body_type = $request->body_type;
         $carDetail->condition = $request->condition;
         $carDetail->year = $request->year;
@@ -87,6 +86,7 @@ public function update(Request $request, $id)
         return $this->error([], 'Car detail not found', 404);
     }
 
+    $carDetail->car_id = $request->car_id;
     $carDetail->body_type = $request->body_type;
     $carDetail->condition = $request->condition;
     $carDetail->year = $request->year;
